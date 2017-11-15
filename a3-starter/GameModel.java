@@ -8,6 +8,9 @@ import javax.vecmath.*;
 
 public class GameModel extends Observable {
 
+    // Rectangle2D landing_pad = new Rectangle2D(330, 100, 40, 10);
+    Polygon terrain_view = new Polygon(); 
+
     public GameModel(int fps, int width, int height, int peaks) {
 
         ship = new Ship(60, width/2, 50);

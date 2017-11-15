@@ -23,6 +23,9 @@ public class A3Basic extends JPanel {
         editPanel.setLayout(new BorderLayout());
         editPanel.add(new ToolBarView(model), BorderLayout.NORTH);
         editPanel.add(editView, BorderLayout.CENTER);
+        // JButton myPanel = new MyPanel();
+        // myPanel.setPreferredSize(new Dimension(40, 10));
+        // editView.add(new myPanel());
         add(editPanel, BorderLayout.SOUTH);
 
         // main playable view will be resizable
