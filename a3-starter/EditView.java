@@ -35,20 +35,39 @@ public class EditView extends JPanel implements Observer {
             	if(me.getClickCount() == 2){
             		moveBox(me.getX(), me.getY());
                     repaint();
+                    return;
             	}
                 if(landing_pad.contains(me.getX(), me.getY())){
                     location.setLocation(me.getX(), me.getY());
                     inside_pad = true;
+                    repaint();
+                    return;
                 }
+                for(int i=0; i<20 ; i++){
+                  if(tv.circles.get(i).contains(me.getX(), me.getY())){
+                    tv.selected_circle_index = i;
+                    break;
+                  }
+                  else{
+                    tv.selected_circle_index = -1;
+                  }
+                }
+                repaint();
             }
         });
 
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent e) {
-                if(inside_pad){
+                if(landing_pad.contains(e.getX(), e.getY())){
                     moveBox(e.getX(), e.getY());
                     repaint();
+                    return;
                 }
+                if (tv.selected_circle_index != -1){
+                    tv.move_peak(tv.selected_circle_index, e.getY());
+                    tv.move_circle(tv.selected_circle_index, e.getY());
+                }
+                repaint();
             }
         });
 
@@ -59,6 +78,8 @@ public class EditView extends JPanel implements Observer {
                     moveBox(e.getX(), e.getY());
                     repaint();
                 }
+                tv.selected_circle_index = -1;
+                repaint();
             }
         });
 
